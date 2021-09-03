@@ -28,7 +28,7 @@ object BuildSpringMusic : BuildType({
                 
                 COPY build/libs/*.jar application.jar
                 
-                CMD ["java","-jar","application.jar"]
+                CMD "java -jar application.jar"
             """.trimIndent()
                 }
                 namesAndTags = "%registryUrl%/ex/example:latest"
