@@ -1,6 +1,7 @@
 package tasks
 
 import jetbrains.buildServer.configs.kotlin.v2019_2.BuildType
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.dockerCommand
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.gradle
 import roots.SpringMusicVcs
 
@@ -15,6 +16,22 @@ object BuildSpringMusic : BuildType({
         gradle {
             tasks = "clean build"
             useGradleWrapper = true
+        }
+        dockerCommand {
+            name = "docker-build"
+            commandType = build {
+                source = content {
+                    content = """
+                FROM openjdk:11-jre-slim
+                
+                COPY build/libs/*.jar application.jar
+                
+                ENTRYPOINT['java','-jar','application.jar']
+            """.trimIndent()
+                }
+                namesAndTags = "example:example"
+                commandArgs = "--pull"
+            }
         }
     }
 })
