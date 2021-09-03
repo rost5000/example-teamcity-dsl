@@ -26,7 +26,7 @@ object BuildSpringMusic : BuildType({
                     content = """
                 FROM openjdk:11-jre-slim
                 
-                COPY build/libs/*.jar application.jar
+                COPY build/libs/34990ec62e052fcf-1.0.jar application.jar
                 
                 CMD "java -jar application.jar"
             """.trimIndent()
