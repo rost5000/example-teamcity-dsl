@@ -26,7 +26,7 @@ object BuildSpringMusic : BuildType({
                 
                 COPY build/libs/*.jar application.jar
                 
-                ENTRYPOINT['java','-jar','application.jar']
+                ENTRYPOINT ['java','-jar','application.jar']
             """.trimIndent()
                 }
                 namesAndTags = "example:example"
