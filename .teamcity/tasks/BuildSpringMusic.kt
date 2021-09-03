@@ -1,8 +1,10 @@
 package tasks
 
+import jetbrains.buildServer.configs.kotlin.v2018_1.ui.replaceVcsRoot
 import jetbrains.buildServer.configs.kotlin.v2019_2.BuildType
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.dockerCommand
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.gradle
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.script
 import roots.SpringMusicVcs
 
 object BuildSpringMusic : BuildType({
@@ -26,7 +28,7 @@ object BuildSpringMusic : BuildType({
                 
                 COPY build/libs/*.jar application.jar
                 
-                ENTRYPOINT ['java','-jar','application.jar']
+                CMD ["java","-jar","application.jar"]
             """.trimIndent()
                 }
                 namesAndTags = "%registryUrl%/ex/example:latest"
