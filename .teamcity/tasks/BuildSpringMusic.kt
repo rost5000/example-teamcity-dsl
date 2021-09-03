@@ -29,8 +29,14 @@ object BuildSpringMusic : BuildType({
                 ENTRYPOINT ['java','-jar','application.jar']
             """.trimIndent()
                 }
-                namesAndTags = "example:example"
+                namesAndTags = "%registryUrl%/ex/example:latest"
                 commandArgs = "--pull"
+            }
+        }
+        dockerCommand {
+            name = "docker-push"
+            commandType = push{
+                namesAndTags = "%registryUrl%/ex/example:latest"
             }
         }
     }
